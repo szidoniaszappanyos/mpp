@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id='mozarella'  class="service.Ingredient">
+        <property name="name" value="Mozarella"/>
+    </bean>
+
+
+    <bean id='Prosciutto funghi'  class="service.Pizza">
+        <constructor-arg value='Yummy Pizza' />
+        <property name="extraIngredient" ref="mozarella"/>
+        <property name="ingredients">
+            <list>
+                <bean id='prosciutto'  class="service.Ingredient">
+                    <property name="name" value="Prosciutto"/>
+                </bean>
+                <bean id='sauce'  class="service.Ingredient">
+                    <property name="name" value="Tomato Sauce"/>
+                </bean>
+                <bean id='funghi'  class="service.Ingredient">
+                    <property name="name" value="Funghi"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+</beans>
