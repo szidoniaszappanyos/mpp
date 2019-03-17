@@ -3,9 +3,9 @@ import model.Sight;
 import model.Trip;
 import org.junit.Assert;
 import org.junit.Test;
-import repository.repositoryService.ReservationJdbcRepository;
-import repository.repositoryService.SightJdbcRepository;
-import repository.repositoryService.TripJdbcRepository;
+import repository.jdbcRepositoryService.ReservationJdbcRepository;
+import repository.jdbcRepositoryService.SightJdbcRepository;
+import repository.jdbcRepositoryService.TripJdbcRepository;
 import uk.co.jemos.podam.api.*;
 
 import java.io.FileReader;

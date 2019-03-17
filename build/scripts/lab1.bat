@@ -63,7 +63,7 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\lab1-1.0-SNAPSHOT.jar;%APP_HOME%\lib\log4j-core-2.8.2.jar;%APP_HOME%\lib\log4j-api-2.8.2.jar;%APP_HOME%\lib\postgresql-42.2.5.jar;%APP_HOME%\lib\guava-20.0.jar
+set CLASSPATH=%APP_HOME%\lib\lab1-1.0-SNAPSHOT.jar;%APP_HOME%\lib\log4j-core-2.8.2.jar;%APP_HOME%\lib\log4j-api-2.8.2.jar;%APP_HOME%\lib\postgresql-42.2.5.jar;%APP_HOME%\lib\spring-context-5.1.5.RELEASE.jar;%APP_HOME%\lib\spring-aop-5.1.5.RELEASE.jar;%APP_HOME%\lib\spring-beans-5.1.5.RELEASE.jar;%APP_HOME%\lib\spring-expression-5.1.5.RELEASE.jar;%APP_HOME%\lib\spring-core-5.1.5.RELEASE.jar;%APP_HOME%\lib\javafx-fxml-13-ea+2.jar;%APP_HOME%\lib\javafx-controls-13-ea+2.jar;%APP_HOME%\lib\javafx-graphics-13-ea+2.jar;%APP_HOME%\lib\guava-20.0.jar;%APP_HOME%\lib\spring-jcl-5.1.5.RELEASE.jar;%APP_HOME%\lib\javafx-base-13-ea+2.jar
 
 @rem Execute lab1
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %LAB1_OPTS%  -classpath "%CLASSPATH%" StartApplication %CMD_LINE_ARGS%

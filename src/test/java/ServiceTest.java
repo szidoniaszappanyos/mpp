@@ -1,9 +1,6 @@
-import model.Reservation;
 import org.junit.Assert;
 import org.junit.Test;
-import service.Service;
-import uk.co.jemos.podam.api.PodamFactory;
-import uk.co.jemos.podam.api.PodamFactoryImpl;
+import service.extraService.Service;
 
 import static org.junit.Assert.*;
 

@@ -4,23 +4,23 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id='mozarella'  class="service.Ingredient">
+    <bean id='mozarella'  class="service.extraService.Ingredient">
         <property name="name" value="Mozarella"/>
     </bean>
 
 
-    <bean id='Prosciutto funghi'  class="service.Pizza">
+    <bean id='Prosciutto funghi'  class="service.extraService.Pizza">
         <constructor-arg value='Yummy Pizza' />
         <property name="extraIngredient" ref="mozarella"/>
         <property name="ingredients">
             <list>
-                <bean id='prosciutto'  class="service.Ingredient">
+                <bean id='prosciutto'  class="service.extraService.Ingredient">
                     <property name="name" value="Prosciutto"/>
                 </bean>
-                <bean id='sauce'  class="service.Ingredient">
+                <bean id='sauce'  class="service.extraService.Ingredient">
                     <property name="name" value="Tomato Sauce"/>
                 </bean>
-                <bean id='funghi'  class="service.Ingredient">
+                <bean id='funghi'  class="service.extraService.Ingredient">
                     <property name="name" value="Funghi"/>
                 </bean>
             </list>
