@@ -15,5 +15,7 @@
           </Menu>
         </menus>
       </MenuBar>
+      <Button fx:id="loadbutton" layoutX="14.0" layoutY="41.0" mnemonicParsing="false" onAction="#load" text="LoadTrips" />
+      <TableView fx:id="tableTrips" layoutX="4.0" layoutY="83.0" prefHeight="303.0" prefWidth="593.0" />
    </children>
 </AnchorPane>

@@ -1,14 +1,12 @@
 package repository.jdbcRepositoryService;
 
 import model.Trip;
+import model.Users;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import repository.IRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -95,19 +93,27 @@ public class TripJdbcRepository implements IRepository<Integer, Trip> {
     public Iterable<Trip> findAll() {
         logger.traceEntry();
         Connection con=dbUtils.getConnection();
-        List<Trip> trip = new ArrayList<>();
+        List<Trip> trips = new ArrayList<>();
         try(PreparedStatement preStmt=con.prepareStatement("select * from trips")) {
             try(ResultSet result=preStmt.executeQuery()) {
                 while (result.next()) {
                     int id = result.getInt("id");
+                    int sightId = result.getInt("sight_id");
+                    String transportFirma = result.getString("transport_firma");
+                    Timestamp departureTime = result.getTimestamp("departure_time");
+                    Float price = result.getFloat("price");
+                    int numberOfSeats = result.getInt("number_of_seats");
+                    String information = result.getString("information");
+                    Trip trip = new Trip(id,sightId,transportFirma,departureTime,price,numberOfSeats,information);
+                    trips.add(trip);
                 }
             }
         } catch (SQLException e) {
             logger.error(e);
             System.out.println("Error DB "+e);
         }
-        logger.traceExit(null);
-        return null;
+        logger.traceExit(trips);
+        return trips;
     }
 
 
