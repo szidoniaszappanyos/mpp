@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -65,9 +66,13 @@ public class LoginController implements EventHandler {
         Pane myPane2 = null;
         try {
             myPane2 = (Pane) loader2.load();
+            StartPageController ctrl=loader2.getController();
+            ctrl.load();
+            ctrl.loadSights();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         primaryStage.setScene(new Scene(myPane2));
     }
 

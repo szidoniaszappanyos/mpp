@@ -5,6 +5,7 @@ import repository.jdbcRepositoryService.TripJdbcRepository;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class TripService {
@@ -27,5 +28,19 @@ public class TripService {
         TripJdbcRepository tripJdbcRepository = initTripJdbcRepository();
         System.out.println(tripJdbcRepository.findAll());
         return tripJdbcRepository.findAll();
+    }
+
+
+    public Iterable<Trip> getAllTripsToSight(int sightId){
+        TripJdbcRepository tripJdbcRepository = initTripJdbcRepository();
+        Iterable<Trip> trips = tripJdbcRepository.findAll();
+        Iterable<Trip> tripsToSight = new ArrayList<>();
+        for(Trip trip:trips) {
+            if (trip.getSightId() == sightId) {
+                ((ArrayList<Trip>) tripsToSight).add(trip);
+            }
+        }
+        System.out.println(tripsToSight);
+        return tripsToSight;
     }
 }

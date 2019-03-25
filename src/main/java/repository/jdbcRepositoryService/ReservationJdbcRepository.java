@@ -3,7 +3,7 @@ package repository.jdbcRepositoryService;
 import model.Reservation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import repository.IRepository;
+import repository.IReservationRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class ReservationJdbcRepository implements IRepository<Integer, Reservation> {
+public class ReservationJdbcRepository implements IReservationRepository {
     private JdbcUtils dbUtils;
 
     private static final Logger logger= LogManager.getLogger();

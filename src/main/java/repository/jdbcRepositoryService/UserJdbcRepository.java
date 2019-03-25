@@ -1,10 +1,9 @@
 package repository.jdbcRepositoryService;
 
-import model.Reservation;
 import model.Users;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import repository.IRepository;
+import repository.IUserRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class UserJdbcRepository implements IRepository<Integer, Users> {
+public class UserJdbcRepository implements IUserRepository {
     private JdbcUtils dbUtils;
 
     private static final Logger logger= LogManager.getLogger();
