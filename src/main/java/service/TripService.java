@@ -5,6 +5,7 @@ import repository.jdbcRepositoryService.TripJdbcRepository;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -33,14 +34,26 @@ public class TripService {
 
     public Iterable<Trip> getAllTripsToSight(int sightId){
         TripJdbcRepository tripJdbcRepository = initTripJdbcRepository();
-        Iterable<Trip> trips = tripJdbcRepository.findAll();
-        Iterable<Trip> tripsToSight = new ArrayList<>();
-        for(Trip trip:trips) {
-            if (trip.getSightId() == sightId) {
-                ((ArrayList<Trip>) tripsToSight).add(trip);
-            }
-        }
-        System.out.println(tripsToSight);
+        Iterable<Trip> tripsToSight = tripJdbcRepository.getAllTripsToSight(sightId);
         return tripsToSight;
     }
+
+    public Iterable<Trip> getAllTripsAtDate(Date date){
+        TripJdbcRepository tripJdbcRepository = initTripJdbcRepository();
+        Iterable<Trip> tripsAtDate = tripJdbcRepository.getAllTripsAtDate(date);
+        return tripsAtDate;
+    }
+
+    public Iterable<Trip> getAllTripsToSightAtDate(int sightId, Date date){
+        TripJdbcRepository tripJdbcRepository = initTripJdbcRepository();
+        Iterable<Trip> tripsAtDate = tripJdbcRepository.getAllTripsToSightAtDate(sightId,date);
+        return tripsAtDate;
+    }
+
+    public Iterable<Trip> getAllTripssAtDateBetweenHours(int sightId, Date date, int departureHour, int arrivalHour){
+        TripJdbcRepository tripJdbcRepository = initTripJdbcRepository();
+        Iterable<Trip> tripsAtDate = tripJdbcRepository.getAllTripsAtDateBetweenHours( sightId, date, departureHour,arrivalHour);
+        return tripsAtDate;
+    }
+
 }

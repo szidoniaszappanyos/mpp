@@ -5,13 +5,21 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Sight;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import service.extraService.Bag;
+import service.extraService.Box;
+import service.extraService.Lasagna;
 import service.extraService.Pizza;
 
 import java.io.IOException;
 
 public class StartApplication extends Application {
+
+
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -35,17 +43,7 @@ public class StartApplication extends Application {
         LogTest log = new LogTest();
         System.out.println(log.retrieveMessage());*/
 
-        //Pizza Bean with dependecies
-        ApplicationContext pizzafactory = new
-                ClassPathXmlApplicationContext("classpath:spring-pizza.xml");
-        Pizza pizza= pizzafactory.getBean(Pizza.class);
-        System.out.println("___________________________" + pizza.toString());
 
-        //Sight bean
-        ApplicationContext sightfactory = new
-                ClassPathXmlApplicationContext("classpath:spring-sight.xml");
-        Sight sight= sightfactory.getBean(Sight.class);
-        System.out.println("___________________________" +sight.toString());
 
     }
 }

@@ -16,11 +16,14 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="loadbutton" layoutX="466.0" layoutY="42.0" mnemonicParsing="false" onAction="#load" text="LoadTrips" />
+      <Button fx:id="loadbutton" layoutX="494.0" layoutY="58.0" mnemonicParsing="false" onAction="#load" text="LoadTrips" />
       <TableView fx:id="tableTrips" layoutX="4.0" layoutY="97.0" prefHeight="303.0" prefWidth="593.0" />
       <ChoiceBox fx:id="sightBox" layoutX="14.0" layoutY="57.0" prefWidth="150.0" />
       <Label layoutX="14.0" layoutY="31.0" text="Search after Sights" />
-      <DatePicker layoutX="191.0" layoutY="57.0" />
-      <Label layoutX="191.0" layoutY="31.0" text="Search after date" />
+      <DatePicker fx:id="dateBox" layoutX="175.0" layoutY="58.0" prefHeight="31.0" prefWidth="136.0" />
+      <Label layoutX="175.0" layoutY="31.0" text="Search after date" />
+      <TextField fx:id="departure" layoutX="323.0" layoutY="58.0" prefHeight="31.0" prefWidth="58.0" />
+      <TextField fx:id="arrival" layoutX="398.0" layoutY="57.0" prefHeight="31.0" prefWidth="58.0" />
+      <Label layoutX="311.0" layoutY="31.0" text="Departure and arrival time" />
    </children>
 </AnchorPane>

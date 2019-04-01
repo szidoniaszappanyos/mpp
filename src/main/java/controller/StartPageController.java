@@ -13,11 +13,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Sight;
 import model.Trip;
-import org.apache.logging.log4j.core.util.KeyValuePair;
 import service.SightService;
 import service.TripService;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class StartPageController implements EventHandler {
 
@@ -31,9 +32,17 @@ public class StartPageController implements EventHandler {
     private ChoiceBox sightBox;
 
     @FXML
-    public void load() {
-        TripService tripService = new TripService();
+    private DatePicker dateBox;
 
+    @FXML
+    private TextField departure;
+
+    @FXML
+    private TextField arrival;
+
+    private boolean firstCall= true;
+
+    private void setTableTrips(){
         TableColumn id = new TableColumn("Id");
 
         TableColumn sightId = new TableColumn("Sight Id");
@@ -55,9 +64,64 @@ public class StartPageController implements EventHandler {
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         numberOfSeats.setCellValueFactory(new PropertyValueFactory<>("numberOfSeats"));
         information.setCellValueFactory(new PropertyValueFactory<>("information"));
+        tableTrips.getColumns().addAll(id, sightId, transportFirma, departureTime, price, numberOfSeats, information);
+    }
 
+    @FXML
+    public void load() {
+        TripService tripService = new TripService();
 
-        if (sightBox.getValue() != null) {
+        if(firstCall) {
+            setTableTrips();
+            firstCall = false;
+        }
+
+        if (dateBox.getValue() != null && sightBox.getValue() != null && departure.getText()!= null && arrival.getText()!= null) {
+            String sight = sightBox.getValue().toString();
+            String sightIdString = sight.substring(9).split(",")[0];
+            int sightIdInt = Integer.parseInt(sightIdString);
+            LocalDate date = dateBox.getValue();
+            Date sqlDate = new Date(date.getYear()-1900, date.getMonthValue()-1, date.getDayOfMonth());
+            System.out.println(date.getYear());
+            System.out.println(sqlDate);
+            int depTime = Integer.parseInt(departure.getText());
+            int arrivalTime = Integer.parseInt(arrival.getText());
+            Iterable<Trip> trips = tripService.getAllTripssAtDateBetweenHours(sightIdInt,sqlDate,depTime, arrivalTime);
+            final ObservableList<Trip> data = FXCollections.observableArrayList();
+            for (Trip trip : trips) {
+                data.add(trip);
+            }
+            tableTrips.setItems(data);
+
+        } else if (dateBox.getValue() != null && sightBox.getValue() != null) {
+            String sight = sightBox.getValue().toString();
+            String sightIdString = sight.substring(9).split(",")[0];
+            int sightIdInt = Integer.parseInt(sightIdString);
+            LocalDate date = dateBox.getValue();
+            Date sqlDate = new Date(date.getYear()-1900, date.getMonthValue()-1, date.getDayOfMonth());
+            System.out.println(date.getYear());
+            System.out.println(sqlDate);
+            Iterable<Trip> trips = tripService.getAllTripsToSightAtDate(sightIdInt,sqlDate);
+            final ObservableList<Trip> data = FXCollections.observableArrayList();
+            for (Trip trip : trips) {
+                data.add(trip);
+            }
+            tableTrips.setItems(data);
+
+        } else if (dateBox.getValue() != null) {
+            LocalDate date = dateBox.getValue();
+            Date sqlDate = new Date(date.getYear()-1900, date.getMonthValue()-1, date.getDayOfMonth());
+            System.out.println(date.getYear());
+            System.out.println(sqlDate);
+            Iterable<Trip> trips = tripService.getAllTripsAtDate(sqlDate);
+            final ObservableList<Trip> data = FXCollections.observableArrayList();
+            for (Trip trip : trips) {
+                data.add(trip);
+            }
+            tableTrips.setItems(data);
+
+        }
+        else  if (sightBox.getValue() != null) {
             String sight = sightBox.getValue().toString();
             String sightIdString = sight.substring(9).split(",")[0];
             int sightIdInt = Integer.parseInt(sightIdString);
@@ -67,19 +131,18 @@ public class StartPageController implements EventHandler {
                 data.add(trip);
             }
             tableTrips.setItems(data);
-            tableTrips.getColumns().addAll(id, sightId, transportFirma, departureTime, price, numberOfSeats, information);
 
 
-        } else {
+        }  else {
             Iterable<Trip> trips = tripService.getAllTrips();
             final ObservableList<Trip> data = FXCollections.observableArrayList();
             for (Trip trip : trips) {
                 data.add(trip);
             }
             tableTrips.setItems(data);
-            tableTrips.getColumns().addAll(id, sightId, transportFirma, departureTime, price, numberOfSeats, information);
 
         }
+
     }
 
     @FXML
